@@ -1,0 +1,39 @@
+# Ignore unnecessary files and directories
+../../*
+
+# Specific files to ignore
+../../.arduinoIDE/
+../../.bash_history
+../../.gitconfig
+../../.idlerc/
+../../.lesshst
+../../.node_repl_history
+../../.vscode/
+../../AppData/
+../../Contacts/
+../Arduino IDE.lnk
+../DOPSoft 4.00.11.lnk
+../Discord.lnk
+../DiskPlayer.lnk
+../Google Chrome.lnk
+../Google Docs.lnk
+../Google Drive.lnk
+../Google Sheets.lnk
+../Google Slides.lnk
+../HLP1 - Machine 1 + 2.pwl1
+../HLP1-MACHINE-1+2.fwc
+../HLP1-MACHINE-1+2.pwl1
+../ISPSoft 3.08.lnk
+../Jerusale.zip
+../Jerusale/
+../Microsoft Edge.lnk
+../OLD Laptop/
+../TCatPlcCtrl - Shortcut.lnk
+../VMS Lite.lnk
+../Visual Studio Code.lnk
+../WhatsApp Image 2024-05-13 at 12.27.27_203e9ed6.jpg
+../alien/
+../all machines backups/
+../desktop.ini
+"../\302\265Torrent.lnk"
+"../\330\247\330\271\331\205\330\247\331\204 \330\250\331\206\330\247\330\241 \331\205\331\206\330\262\331\204 \331\205\330\254\330\257 \330\271\331\212\330\263\
