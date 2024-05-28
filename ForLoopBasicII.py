@@ -86,3 +86,37 @@ def maximum(x):
     return max_value
 print(maximum([37,2,1,-9]))
 print(maximum([]))
+
+#Ultimate Analysis - Create a function that takes a list and returns a dictionary that has the sumTotal, average, minimum, maximum and length of the list.
+#Example: ultimate_analysis([37,2,1,-9]) should return {'sumTotal': 31, 'average': 7.75, 'minimum': -9, 'maximum': 37, 'length': 4 }
+print("Problem 8")
+def ultimate_analysis(x):
+    sumTotal=0
+    min = x[0]
+    max = x[0]
+    dictionary = {}
+    for k in x:
+        sumTotal += k
+        if k < min:
+            min = k
+        if k > max:
+            max = k
+    avg=sumTotal/len(x)
+    length = len(x)
+    dictionary["sumTotal"] = sumTotal
+    dictionary["average"] = avg
+    dictionary["minimum"] = min
+    dictionary["maximum"] = max
+    dictionary["length"] = length
+    return dictionary
+print(ultimate_analysis([37,2,1,-9]))
+    
+#Reverse List - Create a function that takes a list and return that list with values reversed. Do this without creating a second list. (This challenge is known to appear during basic technical interviews.)
+#Example: reverse_list([37,2,1,-9]) should return [-9,1,2,37]      
+print("Problem 9")
+def reverse_list(x):
+    n = len(x)
+    for i in range(0,n // 2,1):
+            x[i] , x[n - 1 - i] = x[n - 1 - i] , x[i]
+    return x
+print(reverse_list([37, 2, 1, -9]))
