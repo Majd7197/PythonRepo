@@ -317,11 +317,33 @@ def b():
 y = a()
 print(y)
 #output: 1 3 5 10
+print("---------------------------------------------------------------")
+# Default parameters & Named arguments:
+def beCheerful(name = "Majd" , Repeat = 5):
+    print(f"good morning {name} " * Repeat)
 
+beCheerful() # see that if u dont pass an argument it takes the default which are Majd & 5
+beCheerful(name = "Ahmad", Repeat =2) 
+beCheerful(name = "George")
+beCheerful(Repeat = 3 , name = "Samir")
+print("---------------------------------------------------------------")
+# ----------------------------------------------------------------------
+#Functions intermediate I : Random function:
+import random
+def randInt(min= 0 , max= 100):
+    if min > max:
+        raise ValueError("min should be less than or equal to max")
+    if max < 0:
+        raise ValueError("max should be greater than or equal to 0")
+    num = random.random() * (max - min) + min
+    return num
+        
 
-
-
-
+print(randInt()) 		# should print a random integer between 0 to 100
+print(randInt(max=50))  # should print a random integer between 0 to 50
+#print(randInt(min=50, max=-199))
+print(randInt(min=50)) 	# should print a random integer between 50 to 100
+print(randInt(min=50, max=500))     # should print a random integer between 50 and 500
 
 
 
