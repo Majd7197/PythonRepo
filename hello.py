@@ -344,6 +344,75 @@ print(randInt(max=50))  # should print a random integer between 0 to 50
 #print(randInt(min=50, max=-199))
 print(randInt(min=50)) 	# should print a random integer between 50 to 100
 print(randInt(min=50, max=500))     # should print a random integer between 50 and 500
+#------------------------------------------------
+#Bubble Sorting
+array_one=[1,5,3,2,0,8]
+def arrange_array(array):
+    for k in range(len(array)):
+        for i in range(len(array)-1 - k):
+            if array[i] > array[i+1]:
+                array[i], array[i+1] = array[i+1], array[i]
+                print("array is now",array)
+    return array
+print(arrange_array(array_one))
+#-----------------------------------------------------------
+#Selection Sort
+print("*"*50,"\n", "Selection Sort:")
+array_two=[1,5,3,2,0,8]
+def selection_sort(array):
+    min=array[0]
+    for j in range(len(array)):
+        for i in range(0,len(array),1):
+            print(j, i)
+            if array[i] < min:
+                min, array[j] = array[i], min
+                
+            
+    print(min)
+    return array
+print((selection_sort(array_two)))
+#---------------------------------------------------------
+#ternary Operators:
+print("*"*100)
+print("Ternary Operators")
+# traditional
+stacks = 5
+if stacks >= 3:
+    print('Coding Dojo')
+else:
+    print('You are not Coding Dojo!')
+# ternary
+x=0;
+print('Coding Dojo' if stacks >= 3 else 'You are not Coding Dojo!')
+print("this is zero" if x == 0 else "this is not zero")
+#---------------------------------------------
+#lambda
+list = ["majd",3 ,(lambda x: x*x)]
+print(list[2](3))
+# create a new list, with a lambda as an element
+my_list = ['test_string', 99, lambda x : x ** 2]
+# access the value in the list
+#print(my_list[2]) # will print a lambda object stored in memory
+# invoke the lambda function, passing in 5 as the argument
+print(my_list[2](5))
+# define a function that takes one input that is a function
+def invoker(callback):
+    # invoke the input pass the argument 2
+    print(callback(2))
+invoker(lambda x: 2 * x)
+invoker(lambda y: 5 + y)
+
+# create a list
+my_arr = [1,2,3,4,5]
+# define a function that squares values
+def square(num):
+    return num ** 2
+# invoke map function
+print(list(map(square, my_arr)))
+
+
+
+
 
 
 
