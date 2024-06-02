@@ -37,20 +37,3 @@ Khader.display_user_balance()
 Majd.transfer_money(Khader,3000)
 Majd.display_user_balance()
 Khader.display_user_balance()
-
-
-
-
-
-
-
-#George = User("George",9000)
-
-#Khader = User("Khader Khair", 8000)
-#print(Majd.name)
-#print(Majd.balance)
-#Majd.make_withdrawal(300)
-#print(Majd.balance)
-#Majd.transfer_money(Khader,400)
-#print(Majd.balance)
-#print(Khader.balance)
