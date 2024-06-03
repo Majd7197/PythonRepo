@@ -344,6 +344,17 @@ print(randInt(max=50))  # should print a random integer between 0 to 50
 #print(randInt(min=50, max=-199))
 print(randInt(min=50)) 	# should print a random integer between 50 to 100
 print(randInt(min=50, max=500))     # should print a random integer between 50 and 500
+#----------------------------------------------------------------------------
+#Sorting:
+# python code below!
+arr = [1,3,5,7]
+arr[0], arr[1] = arr[1], arr[0]
+#------------------------------------
+array_1=[5,2,6,4,8,6,4]
+def selection_sort(array):
+    for i in range(len(array)):
+        min =
+    
 
 
 
