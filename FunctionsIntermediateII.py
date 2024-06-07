@@ -29,13 +29,37 @@ students = [
          {'first_name' : 'Mark', 'last_name' : 'Guillen'},
          {'first_name' : 'KB', 'last_name' : 'Tonel'}
     ]
-def iterateDictionary(namesOfStudents):
-    for i in namesOfStudents:
-        print(namesOfStudents.key)
+def iterateDictionary(list):
+    for student in list:
+        print(f"first_name - {student['first_name']}, last_name - {student['last_name']}")
+    
+iterateDictionary(students) 
+print("Problem 3:Get Values From a List of Dictionaries")
 
-iterateDictionary(students)
+def iterateDictionary2(key_name, some_list):
+    for k in some_list:
+        print(k[key_name])
 
- 
-# should output: (it's okay if each key-value pair ends up on 2 separate lines;
-# bonus to get them to appear exactly as below!)
+iterateDictionary2('first_name', students)
+
+
+def printInfo(some_dict):
+    for key, value_list in some_dict.items():
+        print(f"{key} ({len(value_list)})")
+        for value in value_list:
+            print(f"- {value}")
+        print()  # For better readability with a blank line between keys
+
+# Example dictionary
+dojo = {
+   'locations': ['San Jose', 'Seattle', 'Dallas', 'Chicago', 'Tulsa', 'DC', 'Burbank'],
+   'instructors': ['Michael', 'Amy', 'Eduardo', 'Josh', 'Graham', 'Patrick', 'Minh', 'Devon']
+}
+
+# Call the function with the example dictionary
+printInfo(dojo)
+
+print(dojo.keys())
+
+
 
