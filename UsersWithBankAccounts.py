@@ -42,6 +42,5 @@ class BankAccount:
     
 # Create an instance of User
 Majd = User("Majd Abusada", "majd@gmail.com")
-Majd.account.deposit(100)
 Majd.make_deposit(100)
 Majd.account.display_account_info()
