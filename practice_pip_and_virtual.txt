@@ -1,0 +1,47 @@
+1. pip list
+   Explanation: The `pip list` command shows all installed packages in the current environment.
+   Output: (Include the actual output from your terminal)
+
+2. deactivate
+   Explanation: The `deactivate` command deactivates the virtual environment.
+   Output: (No output, but prompt changes)
+
+3. pip3 list
+   Explanation: The `pip3 list` command lists installed packages in the global environment.
+   Output: (Include the actual output from your terminal)
+
+4. source myEnvironments/py3Env/bin/activate
+   Explanation: Reactivates the virtual environment.
+   Output: (Prompt shows (py3Env))
+
+5. pip install Django==2.2.4
+   Explanation: Installs Django version 2.2.4.
+   Output: (Include the actual output from your terminal)
+
+6. pip freeze
+   Explanation: Outputs installed packages in a format suitable for requirements files.
+   Output: (Include the actual output from your terminal)
+
+7. cd ~/Desktop
+   Explanation: Changes the current directory to the Desktop.
+   Output: (No output)
+
+8. pip freeze > requirements.txt
+   Explanation: Writes installed packages to requirements.txt.
+   Output: (No output)
+
+9. ls
+   Explanation: Lists files in the current directory.
+   Output: requirements.txt
+
+10. cat requirements.txt
+    Explanation: Displays the content of requirements.txt.
+    Output: (Include the actual output from your terminal)
+
+11. pip uninstall Django
+    Explanation: Uninstalls Django.
+    Output: (Include the actual output from your terminal)
+
+12. pip show Django
+    Explanation: Shows information about the Django package.
+    Output: WARNING: Package(s) not found: Django
