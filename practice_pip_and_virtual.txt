@@ -1,6 +1,9 @@
 1. pip list
    Explanation: The `pip list` command shows all installed packages in the current environment.
-   Output: (Include the actual output from your terminal)
+   Output: 
+Package Version
+------- -------
+pip     24.0
 
 2. deactivate
    Explanation: The `deactivate` command deactivates the virtual environment.
@@ -8,7 +11,15 @@
 
 3. pip3 list
    Explanation: The `pip3 list` command lists installed packages in the global environment.
-   Output: (Include the actual output from your terminal)
+   Output: Package       Version
+------------- --------
+asgiref       3.8.1
+Django        5.0.6
+numpy         1.26.4
+opencv-python 4.9.0.80
+pip           24.0
+sqlparse      0.5.0
+tzdata        2024.1
 
 4. source myEnvironments/py3Env/bin/activate
    Explanation: Reactivates the virtual environment.
@@ -16,11 +27,27 @@
 
 5. pip install Django==2.2.4
    Explanation: Installs Django version 2.2.4.
-   Output: (Include the actual output from your terminal)
+   Output: (py3Env) C:\Users\Majd.DESKTOP-898IICL\Desktop\git>pip install Django==2.2.4
+Collecting Django==2.2.4
+  Downloading Django-2.2.4-py3-none-any.whl.metadata (3.5 kB)
+Collecting pytz (from Django==2.2.4)
+  Downloading pytz-2024.1-py2.py3-none-any.whl.metadata (22 kB)
+Collecting sqlparse (from Django==2.2.4)
+  Using cached sqlparse-0.5.0-py3-none-any.whl.metadata (3.9 kB)
+Downloading Django-2.2.4-py3-none-any.whl (7.5 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 7.5/7.5 MB 8.2 MB/s eta 0:00:00
+Downloading pytz-2024.1-py2.py3-none-any.whl (505 kB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 505.5/505.5 kB 10.5 MB/s eta 0:00:00
+Using cached sqlparse-0.5.0-py3-none-any.whl (43 kB)
+Installing collected packages: pytz, sqlparse, Django
+Successfully installed Django-2.2.4 pytz-2024.1 sqlparse-0.5.0
 
 6. pip freeze
    Explanation: Outputs installed packages in a format suitable for requirements files.
-   Output: (Include the actual output from your terminal)
+   Output: Django==2.2.4
+pytz==2024.1
+sqlparse==0.5.0
+
 
 7. cd ~/Desktop
    Explanation: Changes the current directory to the Desktop.
@@ -30,17 +57,27 @@
    Explanation: Writes installed packages to requirements.txt.
    Output: (No output)
 
-9. ls
+9. ls >>  dir in cmd
    Explanation: Lists files in the current directory.
    Output: requirements.txt
 
 10. cat requirements.txt
     Explanation: Displays the content of requirements.txt.
-    Output: (Include the actual output from your terminal)
+    Output: Django==2.2.4
+pytz==2024.1
+sqlparse==0.5.0
 
 11. pip uninstall Django
     Explanation: Uninstalls Django.
-    Output: (Include the actual output from your terminal)
+    Output: Found existing installation: Django 2.2.4
+Uninstalling Django-2.2.4:
+  Would remove:
+    c:\users\majd.desktop-898iicl\desktop\git\py3env\lib\site-packages\django-2.2.4.dist-info\*
+    c:\users\majd.desktop-898iicl\desktop\git\py3env\lib\site-packages\django\*
+    c:\users\majd.desktop-898iicl\desktop\git\py3env\scripts\django-admin.exe
+    c:\users\majd.desktop-898iicl\desktop\git\py3env\scripts\django-admin.py
+Proceed (Y/n)? Y
+  Successfully uninstalled Django-2.2.4
 
 12. pip show Django
     Explanation: Shows information about the Django package.
