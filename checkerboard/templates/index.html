@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>checkerboard</title>
+    <link rel="stylesheet" href="{{url_for('static', filename='style.css')}}">
+</head>
+<style>
+.box1{
+    background-color: {{color1}}
+}
+.box2{
+    background-color: {{color2}}
+}
+</style>
+
+<body>
+    <h1> displaying {{x}} x {{y}} checkerbox</h1>
+    {%for j in range (y)%}
+    <div class="boxes">
+        {%for i in range (x)%}
+            {%if (i+j)%2 == 0%}
+                <div class="box1"></div>
+            {%else%}
+                <div class="box2"></div>
+            {% endif %}
+        {% endfor %}
+    </div>
+    {% endfor %}
+    
+
+    
+</body>
+
+</html>

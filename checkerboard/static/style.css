@@ -1,0 +1,8 @@
+.box1 , .box2{
+    width:80px;
+    height: 80px;
+}
+
+.boxes{
+    display: flex;
+}
