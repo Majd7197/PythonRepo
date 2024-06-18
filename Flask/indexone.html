@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Beautiful Boxes</title>
+    <style>
+        h1 {
+            text-align: center;
+        }
+
+        .box {
+            width: 200px;
+            height: 200px;
+            margin: 20px;
+            background-color: {{ color }};  /* Directly apply the background color */
+        }
+
+        #boxes {
+            display: flex;
+            flex-wrap: wrap;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Displaying {{ times }} {{ color }} boxes:</h1>
+    <h1> Welcome!</h1>
+    <div id="boxes">
+        {% for x in range(times) %}
+            <div class="box"></div>
+        {% endfor %}
+    </div>
+</body>
+
+</html>
