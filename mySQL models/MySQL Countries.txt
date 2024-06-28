@@ -1,0 +1,83 @@
+1st Query
+
+SELECT countries.name, languages.language, languages.percentage 
+FROM languages JOIN countries ON languages.country_id = countries.id
+WHERE language = 'Slovene'
+ORDER BY percentage DESC
+_________________________________________________________________________________________________________
+2nd Query
+
+note: The GROUP BY statement is often used with aggregate functions (COUNT(), MAX(), MIN(), SUM(), AVG()) to group the result-set by one or more columns.
+
+select countries.name, COUNT(cities.country_id) AS cities
+FROM cities JOIN countries ON cities.country_id = countries.id
+GROUP BY countries.name
+ORDER BY  cities DESC
+_________________________________________________________________________________________________________
+3rd Query
+
+SELECT cities.name, cities.population 
+FROM cities JOIN countries
+ON cities.country_id = countries.id
+WHERE countries.name = 'Mexico' AND cities.population > 500000
+ORDER BY cities.population DESC
+_____________________________________________________________________________________________________
+4th Query
+
+SELECT countries.name, languages.language, languages.percentage 
+FROM languages JOIN countries
+ON languages.country_id = countries.id
+WHERE languages.percentage > 89
+ORDER BY languages.percentage DESC
+_____________________________________________________________________________________________________
+5th query
+
+SELECT name, surface_area, population FROM countries
+WHERE surface_area < 501.00 AND population > 100000
+_____________________________________________________________________________________________________
+6th Query
+
+SELECT name, government_form,capital, life_expectancy FROM countries
+WHERE government_form = 'Constitutional Monarchy' AND capital > 200 AND life_expectancy > 75
+_____________________________________________________________________________________________________
+7th Query
+
+SELECT countries.name, cities.name, cities.district, cities.population 
+FROM cities JOIN countries 
+ON cities.country_id = countries.id
+WHERE countries.name = 'Argentina' AND cities.district = 'Buenos Aires' AND cities.population > 500000
+
+_____________________________________________________________________________________________________
+8th Query
+
+select region, COUNT(name) AS countries
+FROM countries
+GROUP BY region
+ORDER BY countries DESC
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

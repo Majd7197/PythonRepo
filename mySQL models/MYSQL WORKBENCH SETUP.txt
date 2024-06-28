@@ -1,0 +1,5 @@
+USE lead_gen_business
+
+SELECT *
+FROM billing JOIN clients
+ON billing.clients_id = clients.id
