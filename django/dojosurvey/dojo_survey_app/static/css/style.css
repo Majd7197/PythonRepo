@@ -1,0 +1,31 @@
+body{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+}
+.border{
+    border: 3px solid black;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+    width:400px;
+    height:400px;
+    padding:20px;
+    font-size: 20px;
+}
+
+.button {
+    color: white;
+    background-color: #76a5af;
+    padding: 10px 20px; /* Adjust padding as needed */
+    font-size: large;
+    box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.5); /* Example: horizontal, vertical, blur, color */
+    border: none;
+    cursor: pointer; /* Ensure the button shows as clickable */
+}
+
+.button:hover {
+    background-color: #5c8599; /* Adjust hover background color if desired */
+}
