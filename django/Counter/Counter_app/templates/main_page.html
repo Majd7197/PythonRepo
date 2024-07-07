@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    {%load static%}
+    <link rel="stylesheet" href="{%static 'css/style.css'%}">
+</head>
+<body>
+    <h1>COUNTER</h1>
+    <h2> {{request.session.counter}} times </h2>
+    <form action="/destroy_session" method="post"> 
+        {% csrf_token %}
+        <h1><button type='submit'>RESET COUNTER</button></h1>
+    </form>
+    <form action="/counter_two" method="post"> 
+        {% csrf_token %}
+        <h1><button type='submit'>+2</button></h1>
+    </form>
+    <form action="/counter_by_any" method="post"> 
+        {% csrf_token %}
+        <h1><input type="text" name="quantity"></h1>
+        <h1><button type='submit'>ADD NUMBER</button></h1>
+    </form>
+</body>
+</html>

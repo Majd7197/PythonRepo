@@ -1,0 +1,64 @@
+urls.py
+from django.urls import path
+from . import views
+urlpatterns = [
+    path('',views.index),
+    path('users',views.show_result),
+]
+
+views.py:
+from django.shortcuts import render,HttpResponse,redirect
+def index(request):
+    return render(request,"main_page.html")
+def show_result(request):
+    name_from_form = request.POST['name']
+    request.session['name'] = request.POST['name']
+    password_from_form = request.POST['password']
+    request.session['counter'] = 100
+    context = {
+        'name' : request.session['name'],
+        'password' : password_from_form
+    }
+    if name_from_form == 'majd' and password_from_form == '12345':
+        return render(request,"results.html",context)
+    else:
+        return redirect('/')
+        
+pain_page.html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    {%load static%}
+    <link rel="stylesheet" href="{%static 'css/style.css'%}">
+</head>
+<body>
+    <h1>HELO MAJD</h1>
+    <form action="/users" method="post"> 
+        {% csrf_token %}
+        <h2>name:<input type="text" name="name"></h2>
+        <h2>password:<input type="password" name="password"></h2>
+        <button type='submit'>Create User</button>
+    </form>
+
+</body>
+</html>
+
+results.html:
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1> Your name is {{name}} </h1>
+    <a href="/">GO BACK</a>
+    <p>Name in session is: {{request.session.name}}</p>
+    <p>Name in session is: {{request.session.counter}}</p>
+
+</body>
+</html>
