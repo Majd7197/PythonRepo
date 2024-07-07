@@ -62,3 +62,7 @@ results.html:
 
 </body>
 </html>
+
+
+
+<h1 class="{% if request.session.counter > 5%}blue{%else%}red{% endif %}">COUNTER</h1>

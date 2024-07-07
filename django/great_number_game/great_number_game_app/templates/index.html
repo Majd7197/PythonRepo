@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Great Number Game</title>
+    {%load static%}
+    <link rel="stylesheet" href="{%static 'css/style.css'%}">
+</head>
+
+<body>
+    <h1>Welcome to the Great Number Game!</h1>
+    <h2>I am thinking of a number between 1 and 100 </h2>
+    <h2>Take a guess!</h2>
+    <div class="form-container">
+        <form action="{% url 'number_guess' %}" method="post"> <!-- Use the URL template tag -->
+            {% csrf_token %}
+            <h1><input type="text" name="quantity"></h1>
+            <button type='submit'>SUMBIT</button>
+        </form>
+    </div>
+    {% if request.session.message %}
+    <div class="{% if request.session.message == 'Too low!' %}
+                    style_low
+               {% elif request.session.message == 'Too high!' %}
+                    style_high
+               {% else %}
+                    style_correct
+               {% endif %}">
+        <h1>{{ request.session.message }}</h1>
+        {% if request.session.message == 'You guessed it!' %}
+        <form action="{% url 'reset' %}" method="post">
+            {% csrf_token %}
+            <div><button class="button" type="submit">Play Again</button></div>
+        </form>
+        {% endif %}
+    </div>
+    {% endif %}
+    <h1>Number of tries: {{request.session.counter}} </h1>
+</body>
+
+</html>

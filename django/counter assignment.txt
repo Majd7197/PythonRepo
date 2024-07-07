@@ -1,0 +1,77 @@
+urls.py:
+from django.urls import path
+from . import views
+urlpatterns = [
+    path('',views.index),
+    path('destroy_session',views.destroy_session),
+    path('counter_two',views.counter_two),
+    path('counter_by_any',views.counter_by_any),
+]
+views.py:
+from django.shortcuts import render,HttpResponse,redirect
+def index(request):
+    if 'key_name' in request.session:
+        print('key exists!')
+    else:
+        print("key 'key_name' does NOT exist")
+    if 'counter' not in request.session:
+        request.session['counter'] = 0
+
+    request.session['counter'] += 1
+
+    return render(request, "main_page.html")
+
+def destroy_session(request):
+    # Clear the session data
+    request.session.flush()
+    # Optionally, redirect to another page
+    return redirect('/')
+def counter_two(request):
+    if 'counter' not in request.session:
+        request.session['counter'] = 0
+    request.session['counter'] += 2
+    return render(request,"main_page.html")
+def counter_by_any(request):
+    if 'counter' not in request.session:
+        request.session['counter'] = 0
+    try:
+        request.session['counter'] += int(request.POST['quantity'])
+    except ValueError:
+        request.session['counter'] += 0  
+
+    return render(request,"main_page.html")
+
+main_page.html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    {%load static%}
+    <link rel="stylesheet" href="{%static 'css/style.css'%}">
+</head>
+<body>
+    <h1>COUNTER</h1>
+    <h2> {{request.session.counter}} times </h2>
+    <form action="/destroy_session" method="post"> 
+        {% csrf_token %}
+        <h1><button type='submit'>RESET COUNTER</button></h1>
+    </form>
+    <form action="/counter_two" method="post"> 
+        {% csrf_token %}
+        <h1><button type='submit'>+2</button></h1>
+    </form>
+    <form action="/counter_by_any" method="post"> 
+        {% csrf_token %}
+        <h1><input type="text" name="quantity"></h1>
+        <h1><button type='submit'>ADD NUMBER</button></h1>
+    </form>
+</body>
+</html>
+
+style.css:
+h1 ,h2{
+    color:blue;
+    text-align: center;
+}
