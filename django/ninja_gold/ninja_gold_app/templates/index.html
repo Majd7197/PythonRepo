@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ninja Gold Game</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <style>
+        .win {
+            color: green;
+        }
+        .lose {
+            color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <h2>Your Gold: <span>{{ request.session.counter }}</span></h2>
+    <div class="body_container">
+        <div class="box_container">
+            <h2>Farm</h2>
+            <h2>(earns 10-20 gold)</h2>
+            <form action="/process_money" method="post">
+                {% csrf_token %}
+                <input type="hidden" name="location" value="farm">
+                <button class="button" type="submit">Find Gold!</button>
+            </form>
+        </div>
+        <div class="box_container">
+            <h2>Cave</h2>
+            <h2>(earns 10-20 gold)</h2>
+            <form action="/process_money" method="post">
+                {% csrf_token %}
+                <input type="hidden" name="location" value="cave">
+                <button class="button" type="submit">Find Gold!</button>
+            </form>
+        </div>
+        <div class="box_container">
+            <h2>House</h2>
+            <h2>(earns 10-20 gold)</h2>
+            <form action="/process_money" method="post">
+                {% csrf_token %}
+                <input type="hidden" name="location" value="house">
+                <button class="button" type="submit">Find Gold!</button>
+            </form>
+        </div>
+        <div class="box_container">
+            <h2>Quest</h2>
+            <h2>(earns/takes 0-50 gold)</h2>
+            <form action="/process_money" method="post">
+                {% csrf_token %}
+                <input type="hidden" name="location" value="quest">
+                <button class="button" type="submit">Find Gold!</button>
+            </form>
+        </div>
+    </div>
+    <h2>Activities:</h2>
+    <div class="bottom_container">
+        {% if request.session.activities %}
+            <ul>
+                {% for activity in request.session.activities %}
+                    <li class="{% if 'lost' in activity.message %}lose{% else %}win{% endif %}">
+                        {{ activity.message }} <span>{{ activity.timestamp }}</span>
+                    </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>No activities yet.</p>
+        {% endif %}
+    </div>
+</body>
+
+</html>
