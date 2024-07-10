@@ -8,7 +8,7 @@ if defined _OLD_CODEPAGE (
     "%SystemRoot%\System32\chcp.com" 65001 > nul
 )
 
-set VIRTUAL_ENV=C:\Users\Majd.DESKTOP-898IICL\Desktop\git\demoRepo\django\djangoPy3env
+set VIRTUAL_ENV=C:\Users\Dell\Desktop\Python Full stack\PythonRepo\django\djangoPy3env
 
 if not defined PROMPT set PROMPT=$P$G
 
