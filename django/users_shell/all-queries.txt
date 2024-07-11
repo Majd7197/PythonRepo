@@ -1,0 +1,17 @@
+from users_shell_app.models import User
+User.objects.create(first_name="majd",last_name="abusada",email_address = "majd@gmail.com", age = 12)
+User.objects.create(first_name="george",last_name="bad",email_address = "george@gmail.com", age = 27)
+User.objects.create(first_name="khader",last_name="khair",email_address = "khader@gmail.com" ,age = 26)
+User.objects.all()
+User.objects.first()
+User.objects.last()
+
+user_three = User.objects.get(id=3)
+user_three.last_name = "Pancakes"
+
+user_to_delete = User.objects.get(id=2)
+user_to_delete.delete()
+
+User.objects.all().order_by('first_name')
+
+User.objects.all().order_by('first_name') * sorting by first name in descending order *
