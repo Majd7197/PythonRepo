@@ -1,0 +1,100 @@
+py manage.py shell
+from dojo_ninas_shell_app.models import Dojo,Ninja
+Dojo.objects.create(name='raji',city='abudis',state='Westbank')
+Dojo.objects.create(name='George',city='Bethlehem',state='Westbank')
+Dojo.objects.create(name='Nasri',city='Ramallah',state='Westbank')
+In [10]: dojo_one = Dojo.objects.get(id=1)
+
+In [11]: dojo_two = Dojo.objects.get(id=2)
+
+In [12]: dojo_three = Dojo.objects.get(id=3)
+
+In [13]: dojo_one.delete()
+Out[13]: (1, {'dojo_ninjas_shell_app.Ninja': 0, 'dojo_ninjas_shell_app.Dojo': 1})
+
+In [14]: dojo_two.delete()
+Out[14]: (1, {'dojo_ninjas_shell_app.Ninja': 0, 'dojo_ninjas_shell_app.Dojo': 1})
+
+In [15]: dojo_three.delete()
+Out[15]: (1, {'dojo_ninjas_shell_app.Ninja': 0, 'dojo_ninjas_shell_app.Dojo': 1})
+
+
+In [16]: Dojo.objects.create(name='Marwan',city='Bethlehem',state='Westbank')
+Out[16]: <Dojo: Dojo object (4)>
+
+In [17]: Dojo.objects.create(name='Ahed',city='Nablus',state='Westbank')
+Out[17]: <Dojo: Dojo object (5)>
+
+In [18]: Dojo.objects.create(name='Aban',city='Abudis',state='Westbank')
+Out[18]: <Dojo: Dojo object (6)>
+
+ninja1= Ninja.objects.create(first_name = 'Majd' , last_name = 'Abusada' , dojo = Dojo.objects.get(id=4))
+In [34]: ninja2= Ninja.objects.create(first_name = 'Ahmad' , last_name = 'Faroun' , dojo = Dojo.objects.get(id=4))
+
+In [35]: ninja3= Ninja.objects.create(first_name = 'George' , last_name = 'Nas' , dojo = Dojo.objects.get(id=4))
+
+In [39]: ninja4= Ninja.objects.create(first_name = 'michael' , last_name = 'jordan' , dojo = Dojo.objects.get(id=5))
+
+In [40]: ninja5= Ninja.objects.create(first_name = 'leo' , last_name = 'messi' , dojo = Dojo.objects.get(id=5))
+
+In [41]: ninja6= Ninja.objects.create(first_name = 'kobe' , last_name = 'bryant' , dojo = Dojo.objects.get(id=5))
+
+In [39]: ninja4= Ninja.objects.create(first_name = 'michael' , last_name = 'jordan' , dojo = Dojo.objects.get(id=5))
+
+In [40]: ninja5= Ninja.objects.create(first_name = 'leo' , last_name = 'messi' , dojo = Dojo.objects.get(id=5))
+
+In [41]: ninja6= Ninja.objects.create(first_name = 'kobe' , last_name = 'bryant' , dojo = Dojo.objects.get(id=5))
+
+In [42]: ninja7= Ninja.objects.create(first_name = 'islam' , last_name = 'murar' , dojo = Dojo.objects.get(id=6))
+
+In [43]: ninja8= Ninja.objects.create(first_name = 'ahmad' , last_name = 'mki' , dojo = Dojo.objects.get(id=6))
+
+In [44]: ninja9= Ninja.objects.create(first_name = 'muhammad' , last_name = 'ali' , dojo = Dojo.objects.get(id=6))
+
+-------------------------------------------------
+Query: Retrieve all the ninjas from the first dojo
+
+In [112]: ninjas = dojo_one.ninjas.all()
+
+In [113]: for k in ninjas:
+     ...:     print(k.__dict__)
+     ...:
+{'_state': <django.db.models.base.ModelState object at 0x000001B56EDF9F70>, 'id': 5, 'first_name': 'Ahmad', 'last_name': 'Faroun', 'dojo_id': 4}
+{'_state': <django.db.models.base.ModelState object at 0x000001B56EDF9610>, 'id': 6, 'first_name': 'George', 'last_name': 'Nas', 'dojo_id': 4}
+{'_state': <django.db.models.base.ModelState object at 0x000001B56EDFB140>, 'id': 13, 'first_name': 'majd', 'last_name': 'abusada', 'dojo_id': 4}
+
+-----------------------------------------------------
+Query: Retrieve all the ninjas from the last dojo
+
+In [114]: last_dojo = Dojo.objects.last()
+
+In [115]: all_last_ninjas = last_dojo.ninjas.all()
+
+In [116]: for z in all_last_ninjas:
+     ...:     print(z.__dict__)
+     ...:
+{'_state': <django.db.models.base.ModelState object at 0x000001B56EDF8A40>, 'id': 10, 'first_name': 'islam', 'last_name': 'murar', 'dojo_id': 6}
+{'_state': <django.db.models.base.ModelState object at 0x000001B56EDFAC60>, 'id': 11, 'first_name': 'ahmad', 'last_name': 'mki', 'dojo_id': 6}
+{'_state': <django.db.models.base.ModelState object at 0x000001B56EDF8980>, 'id': 12, 'first_name': 'muhammad', 'last_name': 'ali', 'dojo_id': 6}
+-----------------------------------------------------
+Query: Retrieve the last ninja's dojo
+
+In [117]: last_ninja = Ninja.objects.last()
+
+In [120]: last_ninja.dojo.name
+Out[120]: 'Marwan'
+-----------------------------------------------------
+from django.db import models
+
+class Dojo(models.Model):
+    name = models.CharField(max_length=255)
+    city = models.CharField(max_length=255)
+    state = models.CharField(max_length=255)
+    desc = models.TextField(blank=True) * THIS IS THE LINE THAT IS ADDED !!!
+    
+class Ninja(models.Model):
+    first_name = models.CharField(max_length=255)
+    last_name = models.CharField(max_length=255)
+    dojo = models.ForeignKey(Dojo,related_name="ninjas",on_delete=models.CASCADE)
+
+

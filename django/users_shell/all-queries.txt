@@ -8,6 +8,7 @@ User.objects.last()
 
 user_three = User.objects.get(id=3)
 user_three.last_name = "Pancakes"
+user_three.save()
 
 user_to_delete = User.objects.get(id=2)
 user_to_delete.delete()
