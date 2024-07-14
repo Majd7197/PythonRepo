@@ -1,0 +1,43 @@
+
+.form {
+    width: 300px; 
+    
+    
+}
+
+
+.form label {
+    display: inline-block; 
+    width: 80px; 
+    margin-bottom: 10px; 
+}
+
+.form button {
+    padding: 10px 20px; 
+   
+    
+}
+.main_container{
+    width:80%;
+    margin: 3% 10%;
+    display:flex;
+    justify-content: space-evenly;
+}
+.top_nav h1{
+    margin-bottom: 10px;
+}
+.button{
+    box-shadow: 3px 3px 3px black;
+}
+.break{
+    margin: 0 7%;
+    height:1px;   
+    border: 3px solid black;
+    border-radius: 70%;
+}
+.bottom_container{
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
