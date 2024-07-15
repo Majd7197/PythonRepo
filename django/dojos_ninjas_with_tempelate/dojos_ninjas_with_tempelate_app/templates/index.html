@@ -44,6 +44,7 @@
                     <option value="{{ dojo.id }}">{{ dojo.name }}</option>
                     {% endfor %}
                 </select>
+                <br>
                 <button class="button" type="submit">Add</button>
             </form>
         </div>
@@ -52,8 +53,17 @@
     <div class="bottom_container">
         <h1>All the Dojos</h1>
         {% for dojo in dojos %}
-        <span>Ninjas at the {{dojo.name}}</span>
+        <span>Ninjas at the {{dojo.name}} Dojo</span>
         <br>
+        {% if dojo.ninjas.all %}
+        <ul>
+            {% for ninja in dojo.ninjas.all %}
+            <li>{{ ninja.first_name }} {{ ninja.last_name }}</li>
+            {% endfor %}
+        </ul>
+        {% else %}
+        <p>No ninjas at this dojo.</p>
+        {% endif %}
         {% endfor %}
     </div>
 

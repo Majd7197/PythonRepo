@@ -2,7 +2,8 @@ from django.shortcuts import render,HttpResponse,redirect
 from .models import Dojo,Ninja
 def index(request):
     context = {
-        "dojos": Dojo.objects.all() 
+        "dojos": Dojo.objects.all() ,
+        "ninjas": Ninja.objects.all()
     }
     return render(request,'index.html',context)
 
@@ -17,6 +18,7 @@ def ninja_add(request):
     if request.method == "POST":
         first_name_from_form = request.POST['first_name']
         last_name_from_form = request.POST['last_name']
-        ninja_from_form = request.POST.get('dojo')
-        Dojo.objects.create(first_name=first_name_from_form, last_name=last_name_from_form, dojo = ninja_from_form)
+        dojo_id_from_form = request.POST.get('dojo')
+        dojo_instance = Dojo.objects.get(id=dojo_id_from_form)
+        Ninja.objects.create(first_name=first_name_from_form, last_name=last_name_from_form, dojo=dojo_instance)
         return redirect("/")
