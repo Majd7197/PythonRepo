@@ -1,0 +1,17 @@
+body{
+    padding:15px;
+}
+h1{
+    color:red; 
+}
+.description{
+    width: auto;
+    height: 200px;
+}
+.main_container{
+    display:flex;
+    justify-content: space-around;
+}
+.button{
+    box-shadow: 3px 3px 3px black;
+}
