@@ -1,0 +1,165 @@
+Models.py:
+
+from django.db import models
+class Book(models.Model):
+    title = models.CharField(max_length=255)
+    desc = models.TextField()
+    created_at=models.DateTimeField(auto_now_add=True)
+    updated_at=models.DateTimeField(auto_now=True)
+    
+class Author(models.Model):
+    first_name = models.CharField(max_length=45)
+    last_name = models.CharField(max_length=45)
+    desc = models.TextField()
+    books = models.ManyToManyField(Book, related_name="authors")
+    notes = models.TextField(blank = True)
+    created_at=models.DateTimeField(auto_now_add=True)
+    updated_at=models.DateTimeField(auto_now=True)
+    
+
+Query: Create 5 books with the following names: C Sharp, Java, Python, PHP, Ruby
+In [4]: c_sharp = Book.objects.create(title = "C Sharp" ,desc = "Programming language")
+
+In [5]: java = Book.objects.create(title = "Java" ,desc = "Programming language")
+
+In [6]: python = Book.objects.create(title = "Python" ,desc = "Programming language")
+
+In [7]: php = Book.objects.create(title = "PHP" ,desc = "Programming language")
+
+In [8]: ruby = Book.objects.create(title = "Ruby" ,desc = "Programming language")
+_______________________________________________
+Query: Create 5 different authors: Jane Austen, Emily Dickinson, Fyodor Dostoevsky, William Shakespeare, Lau Tzu
+
+In [9]: author1 = Author.objects.create(first_name = "Jane", last_name = "Austen")
+
+In [10]: author2 = Author.objects.create(first_name = "Emily", last_name = "Dickinson")
+
+In [11]: author3 = Author.objects.create(first_name = "Fyodor", last_name = "Dostoevsky")
+
+In [12]: author4 = Author.objects.create(first_name = "William", last_name = "Shakespeare")
+
+In [13]: author5 = Author.objects.create(first_name = "Lau", last_name = "Tzu")
+_______________________________________________
+
+Add a new text field in the authors table called 'notes'.
+
+Create and run the migration files to update the table in your database.
+
+added this line to author class:
+notes = models.TextField(blank = True)
+then:
+py manage.py makemigrations
+py manage.py migrate
+________________________________________________
+Query: Change the name of the C Sharp book to C#
+
+book1 = Book.objects.get(id=1)
+
+In [13]: book1.title = "C#"
+In [15]: book1.save()
+_________________________________________________
+Query: Change the first name of the 4th author to Bill
+
+In [18]: author4 = Author.objects.get(id=4)
+In [20]: author4.first_name = "Bill"
+
+In [21]: author4.save()
+_________________________________________________
+Query: Assign the first author to the first 2 books
+first_author = Author.objects.get(id=1)
+book1 = Book.objects.get(id=1)
+book2 = Book.objects.get(id=2)
+In [34]: first_author.books.add(book1)
+
+In [35]: first_author.books.add(book2)
+_________________________________________________
+Query: Assign the second author to the first 3 books
+
+In [39]: second_author = Author.objects.get(id=2)
+
+In [40]: book3 = Book.objects.get(id=3)
+
+In [41]: second_author.books.add(book1)
+
+In [42]: second_author.books.add(book2)
+
+In [43]: second_author.books.add(book3)
+__________________________________________________
+Query: Assign the third author to the first 4 books
+
+In [45]: third_author=Author.objects.get(id=3)
+
+In [46]: book4 = Book.objects.get(id=4)
+
+In [47]: third_author.books.add(book1)
+
+In [48]: third_author.books.add(book2)
+
+In [49]: third_author.books.add(book3)
+
+In [50]: third_author.books.add(book4)
+
+_______________________________________________________
+
+Query: Assign the fourth author to the first 5 books (or in other words, all the books)
+
+In [52]: fourth_author=Author.objects.get(id=4)
+
+In [53]: fourth_author.books.add(book1,book2,book3,book4,book5)
+
+______________________________________________________
+
+Query: Retrieve all the authors for the 3rd book
+In [59]: book3.authors.all().values()
+Out[59]: <QuerySet [{'id': 2, 'first_name': 'Emily', 'last_name': 'Dickinson', 'desc': '', 'notes': '', 'created_at': datetime.datetime(2024, 7, 15, 11, 41, 28, 984436, tzinfo=<UTC>), 'updated_at': datetime.datetime(2024, 7, 15, 11, 41, 28, 984436, tzinfo=<UTC>)}, {'id': 3, 'first_name': 'Fyodor', 'last_name': 'Dostoevsky', 'desc': '', 'notes': '', 'created_at': datetime.datetime(2024, 7, 15, 11, 41, 48, 205199, tzinfo=<UTC>), 'updated_at': datetime.datetime(2024, 7, 15, 11, 41, 48, 205199, tzinfo=<UTC>)}, {'id': 4, 'first_name': 'Bill', 'last_name': 'Shakespeare', 'desc': '', 'notes': '', 'created_at': datetime.datetime(2024, 7, 15, 11, 42, 12, 663704, tzinfo=<UTC>), 'updated_at': datetime.datetime(2024, 7, 15, 11, 58, 31, 721718, tzinfo=<UTC>)}]>
+______________________________________________________
+Query: Remove the first author of the 3rd book
+In [63]: book3.authors.first().__dict__
+Out[63]:
+{'_state': <django.db.models.base.ModelState at 0x1a7f24a71d0>,
+ 'id': 2,
+ 'first_name': 'Emily',
+ 'last_name': 'Dickinson',
+ 'desc': '',
+ 'notes': '',
+ 'created_at': datetime.datetime(2024, 7, 15, 11, 41, 28, 984436, tzinfo=<UTC>),
+ 'updated_at': datetime.datetime(2024, 7, 15, 11, 41, 28, 984436, tzinfo=<UTC>)}
+
+In [64]: book3.authors.first().delete()
+Out[64]:
+(4,
+ {'books_authors_shell_app.Author_books': 3,
+  'books_authors_shell_app.Author': 1})
+
+In [65]: book3.authors.first().__dict__
+Out[65]:
+{'_state': <django.db.models.base.ModelState at 0x1a7f24a7140>,
+ 'id': 3,
+ 'first_name': 'Fyodor',
+ 'last_name': 'Dostoevsky',
+ 'desc': '',
+ 'notes': '',
+ 'created_at': datetime.datetime(2024, 7, 15, 11, 41, 48, 205199, tzinfo=<UTC>),
+ 'updated_at': datetime.datetime(2024, 7, 15, 11, 41, 48, 205199, tzinfo=<UTC>)}
+________________________________________________________
+Query: Add the 5th author as one of the authors of the 2nd book
+
+In [67]: Author.objects.get(id=5)
+Out[67]: <Author: Author object (5)>
+
+In [68]: fifth_author = Author.objects.get(id=5)
+
+In [69]: fifth_author.first_name
+Out[69]: 'Lau'
+
+In [70]: book2.authors.add(fifth_author)
+______________________________________________________
+Query: Find all the books that the 3rd author is part of
+
+In [71]: third_author.books.all().values()
+Out[71]: <QuerySet [{'id': 1, 'title': 'C#', 'desc': 'Programming language', 'created_at': datetime.datetime(2024, 7, 15, 11, 38, 45, 839965, tzinfo=<UTC>), 'updated_at': datetime.datetime(2024, 7, 15, 11, 51, 57, 175830, tzinfo=<UTC>)}, {'id': 2, 'title': 'Java', 'desc': 'Programming language', 'created_at': datetime.datetime(2024, 7, 15, 11, 39, 0, 807229, tzinfo=<UTC>), 'updated_at': datetime.datetime(2024, 7, 15, 11, 39, 0, 807229, tzinfo=<UTC>)}, {'id': 3, 'title': 'Python', 'desc': 'Programming language', 'created_at': datetime.datetime(2024, 7, 15, 11, 39, 15, 889402, tzinfo=<UTC>), 'updated_at': datetime.datetime(2024, 7, 15, 11, 39, 15, 889402, tzinfo=<UTC>)}, {'id': 4, 'title': 'PHP', 'desc': 'Programming language', 'created_at': datetime.datetime(2024, 7, 15, 11, 39, 31, 582525, tzinfo=<UTC>), 'updated_at': datetime.datetime(2024, 7, 15, 11, 39, 31, 582525, tzinfo=<UTC>)}]>
+__________________________________________________
+Query: Find all the authors that contributed to the 5th book
+
+In [72]: book5.authors.all().values()
+Out[72]: <QuerySet [{'id': 4, 'first_name': 'Bill', 'last_name': 'Shakespeare', 'desc': '', 'notes': '', 'created_at': datetime.datetime(2024, 7, 15, 11, 42, 12, 663704, tzinfo=<UTC>), 'updated_at': datetime.datetime(2024, 7, 15, 11, 58, 31, 721718, tzinfo=<UTC>)}]>
