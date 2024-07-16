@@ -13,14 +13,17 @@
 <body>
     <div class="main_container">
         <div>
-            <h1>Add a book </h1>
-            <form action="/add_book" method="post">
+            <h1>Add an Author </h1>
+            <form action="/add_author" method="post">
                 {% csrf_token %}
-                <label>Title</label>
-                <input type="text" name="title">
+                <label>First Name</label>
+                <input type="text" name="first_name">
                 <br>
-                <label>Description</label>
-                <input class="description" type="text" name="description">
+                <label>Last Name</label>
+                <input type="text" name="last_name">
+                <br>
+                <label>Notes</label>
+                <input class="description" type="text" name="notes">
                 <br>
                 <button class="button" type="submit">Add</button>
             </form>
@@ -32,12 +35,11 @@
                     <th>Name</th>
                     <th>Action</th>
                 </tr>
-                {% for book in books %}
+                {% for author in authors %}
                 <tr>
-
-                    <td>{{book.id}}</td>
-                    <td>{{book.title}}</td>
-                    <td><a href="/books/{{book.id}}">View</a></td>
+                    <td>{{author.id}}</td>
+                    <td>{{author.first_name}}{{author.last_name}} </td>
+                    <td><a href="/author/{{author.id}}">View</a></td>
                 </tr>
                 {% endfor %}
             </table>
