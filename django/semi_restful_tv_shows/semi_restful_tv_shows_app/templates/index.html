@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}"">
+    <link rel=" stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+</head>
+
+<body>
+    <div class="main_container">
+        <h4><a href="/shows">Go Back</a></h4>
+        <h1>Add a New Show</h1>
+        <form action="/add_show" method="post">
+            {% csrf_token %}
+            <div>
+                <label for="title">
+                    <h2>Title</h2>
+                </label>
+                <br>
+                <input type="text" id="title" name="title">
+            </div>
+            <div class="d-flex flex-row">
+                <div>
+                    <label for="network">
+                        <h2>Network</h2>
+                    </label>
+                    <input type="text" id="network" name="network">
+                </div>
+                <div>
+                    <label for="release_date">
+                        <h2>Release Date</h2>
+                    </label>
+                    <input type="date" id="release_date" name="release_date">
+                </div>
+            </div>
+            <div>
+                <label for="description">
+                    <h3>Description</h3>
+                </label>
+                <br>
+                <input type="text" id="description" name="description">
+            </div>
+            <div>
+                <button type="submit">Create</button>
+            </div>
+        </form>
+    </div>
+
+    <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+</body>
+
+
+</html>
