@@ -10,8 +10,16 @@ h1{
 }
 .main_container{
     display:flex;
+    margin: 0 20%;
     justify-content: space-around;
 }
 .button{
     box-shadow: 3px 3px 3px black;
+    width:100px;
+    margin:10px 20px;
+}
+.form_container form{
+    display:flex;
+    flex-direction: column;
+    align-items: center;
 }

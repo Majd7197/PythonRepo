@@ -28,12 +28,16 @@ def add_author(request):
         notes_from_form = request.POST.get('notes')
         Author.objects.create(first_name = first_name_from_form, last_name = last_name_from_form, notes = notes_from_form)
     return redirect('/authors')
+
 def get_book(request,id):
     book = Book.objects.get(id=id)
+    authors = Author.objects.all()
     context = {
-        'book' : book
+        'book' : book,
+        'authors': authors
     }
     return render(request,'book_details.html',context)
+
 def get_author(request,id):
     author = Author.objects.get(id=id)
     books = Book.objects.all()
@@ -51,14 +55,14 @@ def add_book_to_author(request):
         author = Author.objects.get(id=author_id)
         author.books.add(book)
         return redirect(f'/author/{author.id}/')
+    return HttpResponse("Invalid request or operation")
     
 def add_author_to_book(request):
     if request.method == "POST":
-        book_id = request.POST.get('book')
-        author_id = request.POST.get('author_id')
+        book_id = request.POST.get('book_id')
+        author_id = request.POST.get('author')
         book = Book.objects.get(id=book_id)
         author = Author.objects.get(id=author_id)
-        
-        # Add the book to the author's collection of books
-        book.author.add(book)
-        return redirect(f'/author/{book.id}/')
+        book.authors.add(author)
+        return redirect(f'/books/{book.id}/')
+    return HttpResponse("Invalid request or operation")
