@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     {% load static %}
-    <link rel="stylesheet" href="{% static 'css/style.css' %}"">
+    <link rel="stylesheet" href="{% static 'css/style_shows.css' %}"">
     <link rel=" stylesheet" href="{% static 'css/bootstrap.min.css' %}">
 </head>
 
@@ -30,11 +30,12 @@
                     <td>{{show.title}}</td>
                     <td>{{show.network}}</td>
                     <td>{{show.release_date}}</td>
-                    <td><a href="">Show</a> | <a href="">Edit</a> | <a href="">Delete</a></td>
+                    <td><a href="/shows/{{show.id}}">Show</a> | <a href="shows/{{show.id}}/edit">Edit</a> | <a href="/shows/{{show.id}}/destroy">Delete</a></td>
                 </tr>
                 {% endfor %}
             </table>
         </div>
+        <h4><a href="shows/new">Add a New Show</a></h4>
     </div>
 
     <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>

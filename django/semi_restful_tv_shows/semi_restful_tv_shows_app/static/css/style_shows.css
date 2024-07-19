@@ -1,0 +1,18 @@
+.shows_main_container{
+    height: 100%;
+    margin: 3% 15%;
+    box-sizing: border-box;
+}
+
+.margin_top_bot{
+    margin: 15px 0;
+}
+table {
+    width: 100%; /* Optional: ensures the table takes the full width of the container */
+    text-align: center; /* Centers text horizontally */
+}
+
+th, td {
+    vertical-align: middle; /* Centers content vertically */
+    text-align: center; /* Centers text horizontally */
+}
