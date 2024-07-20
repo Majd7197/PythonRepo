@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style_show_info.css' %}"">
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+
+</head>
+
+<body>
+    
+    <div class="main_container">
+        <h5 class="right"><a href="/shows">Go Back</a></h5>
+        <h5>TV Show: {{ show.id }}</h5>
+        <h5>Title: {{ show.title }}</h5>
+        <h5>Network: {{ show.network }}</h5>
+        <h5>Release Date: {{ show.release_date }}</h5>
+        <h5>Description: {{ show.description }}</h5>
+        <h5>Last Updated: {{ show.updated_at }}</h5>
+        <a href="/shows/{{show.id}}/edit">Edit</a> | <a href="/shows/{{show.id}}/destroy">Delete</a>
+    </div>
+
+    <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+</body>
+
+
+</html>
