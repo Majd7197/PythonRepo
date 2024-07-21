@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style_index.css' %}"">
+    <link rel=" stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+</head>
+
+<body>
+    <div class="main_container">
+        <form action="/" method="post">
+            {% csrf_token %}
+            <span>
+                <h2>Add a New Course</h2>
+            </span>
+            <div>
+                <label for="name" class="full-width-label">
+                    <span>Name</span>
+                    <br>
+                    <input type="text" id="name" name="name">
+                </label>
+            </div>
+            <div>
+                <label for="description" class="full-width-label">
+                    <span>Description</span>
+                    <br>
+                    <textarea id="description" name="description" rows="6" cols="60"></textarea>
+                </label>
+            </div>
+            <div class="centering_button">
+                <button class="button" type="submit">Create</button>
+            </div>
+        </form>
+        {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+            <li {% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+    
+        <h2>Courses</h1>
+            <div>
+                <table class="table table-light table table-hover table-bordered table table-striped tb_width">
+                    <tr class="table-danger">
+                        <th>Course Name</th>
+                        <th>Description</th>
+                        <th>Date Added</th>
+                        <th>Actions</th>
+                    </tr>
+                    {% for course in courses %}
+                    <tr>
+                        <td>{{course.name}}</td>
+                        <td>{{course.description}}</td>
+                        <td>{{course.created_at}}</td>
+                        <td><a href="/courses/destroy/{{course.id}}">remove</a></td>
+                    </tr>
+                    {% endfor %}
+                </table>
+
+            </div>
+
+           
+
+    </div>
+
+    <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+</body>
+
+
+</html>
