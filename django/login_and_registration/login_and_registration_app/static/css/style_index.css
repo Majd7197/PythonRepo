@@ -2,15 +2,10 @@
     padding: 20px;
 }
 
-#main_container {
-    display: flex;
-    justify-content: space-between;
-    padding: 20px;
-}
 
 .left_container, .right_container {
-    width: 45%;
-
+    width: 40%;
+}
 .button{
     box-shadow: 3px 3px 3px black;
     font-size: 20px;
@@ -21,4 +16,9 @@
     color:white;
     cursor: pointer;
 
+}
+.labell{
+    display: flex;
+    
+    align-items: center;
 }

@@ -59,7 +59,7 @@
         </div>
         <div class="right_container">
             <h2>Login</h2>
-            <form action="/registration" method="post">
+            <form action="/login" method="post">
                 {% csrf_token %}
 
                 <div class="form-group row col-md-4 mb-4 ">
@@ -70,11 +70,13 @@
                 </div>
 
                 <div class="form-group row col-md-4 mb-4">
-                    <label for="last_name" class="col-sm-2 col-form-label">Last Name</label>
+                    <label for="password" class="col-sm-2 col-form-label">Password</label>
                     <div class="col-sm-10">
-                        <input type="password" name="password" class="form-control" id="password" placeholder="password">
+                        <input type="password" name="password" class="form-control" id="password"
+                            placeholder="password">
                     </div>
                 </div>
+                <button type="sumbit" class="button">Login</button>
             </form>
         </div>
     </div>
