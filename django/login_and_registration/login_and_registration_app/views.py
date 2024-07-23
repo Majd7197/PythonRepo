@@ -4,25 +4,25 @@ from django.contrib import messages
 import bcrypt
 
 def index(request):
-    
     if request.method == "POST":
         errors = User.objects.basic_validator(request.POST)
-        if len(errors) > 0:
+        print("THIS IS A POST REQUEST !!!!!!!!!!")
+        if len(errors) > 0 :
             for key, value in errors.items():
                 messages.error(request, value)
-            return render(request,'index.html')
+            return redirect('/')
         else:
             first_name_from_form = request.POST.get('first_name')
             last_name_from_form = request.POST.get('last_name')
             email_from_form = request.POST.get('email')
-            password = request.POST['password']
+            password = request.POST.get('password')
+            birthday = request.POST.get('birthday')
             pw_hash = bcrypt.hashpw(password.encode(), bcrypt.gensalt()).decode()
-            request.session['first_name']= first_name_from_form
-            request.session['last_name']= last_name_from_form
-            request.session['email'] = email_from_form
             print(pw_hash)        
-            User.objects.create(first_name=first_name_from_form ,last_name = last_name_from_form, email = email_from_form, password = pw_hash)
-            return redirect('/')
+            User.objects.create(first_name=first_name_from_form ,last_name = last_name_from_form, email = email_from_form, password = pw_hash,birthday=birthday)
+            request.session['first_name'] = request.POST.get('first_name')
+            return redirect('/success')
+    print("THIS IS A GET REQUEST !!!!!!")
     return render(request, 'index.html')
 
 def login(request):
@@ -41,7 +41,7 @@ def login(request):
                     # Never render on a post, always redirect!
                     return redirect('/success')
             # If no password matched
-            messages.error(request, "Incorrect password")
+            messages.error(request, "Incorrect Username or password")
         else:
             # Handle the case where no users were found
             messages.error(request, "User does not exist")
@@ -52,4 +52,11 @@ def login(request):
     return render(request, 'login.html')
 
 def success(request):
-    return render(request,'success.html')
+    if 'first_name' not in request.session:
+        print("USER IS NOT IN THE SESSION")
+        return redirect('/')
+    return render(request, 'success.html')
+
+def logout(request):
+    request.session.flush()
+    return redirect('/')
