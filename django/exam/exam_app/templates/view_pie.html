@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style_success.css' %}"">
+    <link rel=" stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+</head>
+
+<body>
+    <p class="text-end"><a href="/logout">Logout</a></p>
+    <div class="view_pie_container">
+        <h1>{{pie.name}}</h1>
+        <h2>By {{pie.user.first_name}}</h2>
+        <br>
+        <h3>{{pie.filling}} with {{pie.crust}}</h3>
+    </div>
+    <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+</body>
+
+
+</html>
