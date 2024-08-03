@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style_success.css' %}"">
+    <link rel=" stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+</head>
+
+<body>
+    <p class="text-end"><a href="/logout">Logout</a></p>
+    <div class="top_container">
+    </div>
+    <div id="main_container">
+        <div class="left_container">
+            <h2>Pies By {{request.session.first_name}} </h2>
+            <table class="table table-light table-hover table-bordered table-striped">
+                <tr>
+                    <th>Name</th>
+                    <th>Baker</th>
+                </tr>
+                {% for pie in pies %}
+                <tr>
+                    <td><a href="pies/{{pie.id}}">{{ pie.name }}</a></td>
+                    <td>{{ pie.user.first_name }}</td>
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+    </div>
+    <p class="text-center"><a href="/dashboard">Back to my pies</a></p>
+
+
+    <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+</body>
+
+
+</html>
