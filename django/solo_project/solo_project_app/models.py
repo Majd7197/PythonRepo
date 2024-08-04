@@ -5,7 +5,7 @@ from datetime import datetime
 class UserManager(models.Manager):
     def basic_validator(self, postData):
         errors = {}
-        if not (postData.get('first_name') and postData.get('last_name') and postData.get('email') and postData.get('password') and postData.get('confirm_password')):
+        if not (postData.get('first_name') and postData.get('last_name') and postData.get('email')):
             errors["fields"] = "All fields must be present"
         
         if len(postData.get('first_name', '')) < 2:
@@ -22,8 +22,8 @@ class UserManager(models.Manager):
         EMAIL_REGEX = re.compile(r'^[a-zA-Z0-9.+_-]+@[a-zA-Z0-9._-]+\.[a-zA-Z]+$')
         if not EMAIL_REGEX.match(postData['email']):             
             errors['email'] = "Invalid email address!"
-        if len(postData.get('password', '')) < 8:
-            errors["password"] = "Password should be at least 8 characters"
+        # if len(postData.get('password', '')) < 8:
+        #     errors["password"] = "Password should be at least 8 characters"
         # if postData.get('confirm_password', '') != postData.get('password', '') :
         #     errors["confirm_password"] = "Both passwords must be identical!"
         return errors

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>GymGate - Subscriptions</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style_index.css' %}">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+
+    <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#">GymGate</a>
+            </div>
+            <ul class="nav navbar-nav">
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Users</a></li>
+                <li><a href="/classes">Classes</a></li>
+                <li class="active"><a href="/subscriptions">Subscriptions</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="#"><span></span> About us</a></li>
+                <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+                <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div id="main_container">
+        <div class="right_container">
+            <h2>List of Members</h2>
+            <table class="table table-light table-hover table-bordered table-striped">
+                <tr>
+                    <th>Name</th>
+                    <th>Subscription Start</th>
+                    <th>Subscription End</th>
+                    <th>Actions</th>
+                    <th>Status</th>
+                </tr>
+                {% for user in users %}
+
+                {% if user.subscriptions.all %}
+                    {% for subscription in user.subscriptions.all %}
+                        <tr>
+                            <td>{{ user.first_name }} {{ user.last_name }}</td>
+                            <td>{{ subscription.start_date }}</td>
+                            <td>{{ subscription.end_date }}</td>
+                            <td><a href="">edit</a> | <a href="">review</a></td>
+                            <td> {% if time > subscription.end_date %} Expired Subscription {% else %} valid {% endif %} </td>
+                        </tr>
+                    {% endfor %}
+                {% else %}
+                    <tr>
+                        <td >{{ user.first_name }} {{ user.last_name }}</td>
+                        <td >-</td>
+                        <td >-</td>
+                        <td >-</td>
+                        <td >No subscription found | <a href="/add_subscription/{{user.id}}">Add Subscription</a></td>
+                    </tr>
+                {% endif %}
+
+            {% endfor %}
+            </table>
+        </div>
+    </div>
+    <script src="{% static 'js/script.js' %}"></script>
+</body>
+
+</html>
