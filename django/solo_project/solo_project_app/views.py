@@ -78,7 +78,7 @@ def index(request):
                 }
             )
 
-        return redirect('/')
+        return redirect('/users')
 
     content = {
         'roles': Role.objects.all(),
@@ -111,7 +111,8 @@ def subscriptions(request):
         'users' : User.objects.all(),
         'roles': Role.objects.all(),
         'subscriptions' : Subscription.objects.all(),
-        "time": strftime("%Y-%m-%d %H:%M %p", gmtime())
+        "time": strftime("%Y-%m-%d %H:%M %p", gmtime()),
+        
     }
     return render(request,'subscriptions.html',context)
 

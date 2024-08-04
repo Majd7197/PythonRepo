@@ -21,7 +21,7 @@
             </div>
             <ul class="nav navbar-nav">
                 <li><a href="#">Home</a></li>
-                <li class="active"><a href="#">Users</a></li>
+                <li class="active"><a href="/users">Users</a></li>
                 <li><a href="#">Classes</a></li>
                 <li><a href="/subscriptions">Subscriptions</a></li>
             </ul>
@@ -36,7 +36,7 @@
     <div id="main_container">
         <div class="left_container">
             <h2>Add a User</h2>
-            <form action="/" method="post">
+            <form action="/users" method="post">
                 {% csrf_token %}
 
                 <div class="form-group row col-md-8 mb-10">
@@ -130,17 +130,19 @@
                     <th>Name</th>
                     <th>Date of Birth</th>
                     <th>Phone Number</th>
-
-
+                    <th>Action</th>
+                    <th>Role</th>
                 </tr>
                 {% for user in users %}
                 <tr>
                     <td>{{ user.first_name }} {{user.last_name}}</td>
                     <td>{{ user.dateofbirth }}</td> <!-- Use the correct field name from your model -->
                     <td>{{ user.phone_number }}</td>
-                    <th><a href="">edit</a> | <a href="">review</a></th>
+                    <td><a href="">edit</a> | <a href="">review</a></td> 
+                    <td>{% for role in user.roles.all %} {{role.title}} {% endfor %}</td>    
                 </tr>
                 {% endfor %}
+
             </table>
         </div>
     </div>
