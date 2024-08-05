@@ -1,0 +1,41 @@
+{% extends 'partials/base.html' %}
+{% load static %}
+{% block title %} GymManagement System - Plans {% endblock %}
+{% block content %}
+{%include 'partials/header.html' %}
+
+<div class="blue lighten-5">
+    <div class="section">
+        <!--   Icon Section   -->
+        <div class="row">
+            <div class="col s12">
+                <div class="icon-block">
+                    <h2 class="center brown-text">
+                        <i class="material-icons">grade</i>
+                    </h2>
+                    <h5 class="center">Plans</h5>
+
+                    {% for each_plan in plans %}
+                    <div class="col s12 m6">
+                        <div class="card">
+                          <div class="card-image">
+                            <img src="{{ each_plan.image.url }}">
+                            <span class="card-title">{{ each_plan.name }}</span>
+                          </div>
+                          <div class="card-content">
+                            <p>{{ each_plan.description }}</p>
+                          </div>
+                          <div class="card-action">
+                            <p>FEES - {{ each_plan.fees }}</p>
+                            <p>Billed {{ each_plan.billing_duration }}</p>
+                          </div>
+                        </div>
+                      </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% include 'partials/footer.html' %} {% endblock %}

@@ -1,0 +1,62 @@
+{% extends 'partials/base.html' %}
+{% load static %}
+{% block title %} GymManagement System - Equipments {% endblock %}
+{% block content %}
+{%include 'partials/header.html' %}
+
+<div class="blue lighten-5">
+    <div class="section">
+        <!--   Icon Section   -->
+        <div class="row">
+            <div class="col s12">
+                <div class="icon-block">
+                    <h2 class="center brown-text">
+                        <i class="material-icons">bolt</i>
+                    </h2>
+                    <h5 class="center">Subscriptions</h5>
+                    <form action="{% url 'core:list-subscriptions' %}" class="col s12" method="GET">
+                        <div class="row">
+                            <h5 class="col s2">Search Users</h5>
+                            <div class="input-field col s8">
+                                <input class="white grey-text autocomplete" placeholder="Aruba, Cancun, etc..." type="text" name="search-input" id="autocomplete-input">
+                            </div>
+                            <div class="input-field col s2">
+                                <input class="btn teal" value="Search" type="submit" />
+                                <input class="btn red" value="Clear Search" type="button" id="clear-search" />
+                            </div>
+                          </div>
+                    </form>
+                    <table>
+                        <thead>
+                          <tr>
+                              <th>Username</th>
+                              <th>Plan</th>
+                              <th>Subscription Date</th>
+                              <th>Is Paid</th>
+                              <th>Fees</th>
+                              <th>Details</th>
+                          </tr>
+                        </thead>
+                
+                        <tbody>
+                            {% for each_subscription in subscriptions %}
+                            <tr>
+                                <td>{{ each_subscription.user_id.email }}</td>
+                                <td>{{ each_subscription.plan_id.name }}</td>
+                                <td>{{ each_subscription.subscription_date }}</td>
+                                <td>{{ each_subscription.is_paid }}</td>
+                                <td>RS {{ each_subscription.plan_id.fees }}</td>
+                                <td>
+                                    <a href="{% url 'core:subscription-detail' each_subscription.id %}" class="btn teal">Detail</a>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                      </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% include 'partials/footer.html' %} {% endblock %}

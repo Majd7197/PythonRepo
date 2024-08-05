@@ -1,0 +1,37 @@
+{% extends 'partials/base.html' %}
+{% load static %}
+{% block title %} GymManagement System - Equipments {% endblock %}
+{% block content %}
+{%include 'partials/header.html' %}
+
+<div class="blue lighten-5">
+    <div class="section">
+        <!--   Icon Section   -->
+        <div class="row">
+            <div class="col s12">
+                <div class="icon-block">
+                    <h2 class="center brown-text">
+                        <i class="material-icons">settings</i>
+                    </h2>
+                    <h5 class="center">World Class Equipments</h5>
+
+                    {% for each_equipment in equipments %}
+                    <div class="col s12 m6">
+                        <div class="card">
+                          <div class="card-image">
+                            <img src="{{ each_equipment.image.url }}">
+                            <span class="card-title">{{ each_equipment.name }}</span>
+                          </div>
+                          <div class="card-content">
+                            <p>Available Quantity - {{ each_equipment.quantity }}</p>
+                          </div>
+                        </div>
+                      </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% include 'partials/footer.html' %} {% endblock %}
