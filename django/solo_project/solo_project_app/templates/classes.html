@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>GymGate - Classes</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style_index.css' %}">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+
+    <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#">GymGate</a>
+            </div>
+            <ul class="nav navbar-nav">
+                <li><a href="#">Home</a></li>
+                <li><a href="/users">Users</a></li>
+                <li><a class="active" href="/classes">Classes</a></li>
+                <li><a href="/subscriptions">Subscriptions</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="#"><span></span> About us</a></li>
+                <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+                <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div id="main_container">
+        <div class="left_container">
+            <h2>Add a Class</h2>
+            <form action="/add_class" method="post">
+                {% csrf_token %}
+
+                <div class="form-group row col-md-8 mb-10">
+                    <label for="title" class="col-sm-4 col-form-label">Title</label>
+                    <div class="col-sm-8">
+                        <input type="text" name="title" class="form-control" id="title"
+                            placeholder="Class Title" required>
+                    </div>
+                </div>
+
+                <div class="form-group row col-md-8 mb-10">
+                    <label for="description" class="col-sm-4 col-form-label">Description</label>
+                    <div class="col-sm-8">
+                        <input type="text" name="description" class="form-control" id="description" placeholder="Class Description"
+                            required>
+                    </div>
+                </div>
+
+                <div class="form-group row col-md-8 mb-10">
+                    <label for="max_size" class="col-sm-4 col-form-label">Maximum Size</label>
+                    <div class="col-sm-8">
+                        <input type="number" name="max_size" class="form-control" id="max_size" placeholder="Maximum Size"
+                            required>
+                    </div>
+                </div>
+                <div class="form-group row col-md-8 mb-10">
+                    <label for="trainer" class="col-sm-4 col-form-label">Trainer</label>
+                    <div class="col-sm-8">
+                        <select class="form-control" name="trainer" id="trainer">
+                            {% for user in users %}
+                                {% for role in user.roles.all %}
+                                     {% if role.title == 'trainer' %}
+                            <option value="{{user.id}}">{{user.first_name}} {{user.last_name}}</option>
+                            {% endif %}
+                            {% endfor %}
+                            {% endfor %}
+                        </select>
+                    </div>
+                </div>
+                <input type="hidden" name="class_id" value ="class.id" class="form-control" >
+                <div class="form-group row col-md-8">
+                    <div class="col-sm-offset-4 col-sm-8">
+                        <button type="submit" class="btn btn-primary">Add Class</button>
+                    </div>
+                </div>
+            </form>
+
+            <div>
+                {% if messages %}
+                <ul class="messages">
+                    {% for message in messages %}
+                    <li {% if message.tags %} class="{{ message.tags }} text-danger" {% endif %}>{{ message }}</li>
+                    {% endfor %}
+                </ul>
+                {% endif %}
+            </div>
+        </div>
+
+        <div class="right_container">
+            <h2>List of Classes</h2>
+            <table class="table table-light table-hover table-bordered table-striped">
+                <tr>
+                    <th>Title</th>
+                    <th>Description</th>
+                    <th>Max Size</th>
+                    <th>Trainer</th>
+                    <th>Actions</th>
+                </tr>
+                {% for class in classes %}
+                <tr>
+                    <td>{{ class.title }} </td>
+                    <td>{{ class.description }}</td> 
+                    <td>{{ class.max_size }}</td>        
+                    <td>{% for trainer in class.users.all %} {{trainer.first_name}} {{trainer.last_name}} {% endfor %}</td>  
+                    <td><a href="">edit</a> | <a href="">review</a></td>  
+                </tr>
+                {% endfor %}
+
+            </table>
+        </div>
+    </div>
+    <script src="{% static 'js/script.js' %}"></script>
+</body>
+
+</html>

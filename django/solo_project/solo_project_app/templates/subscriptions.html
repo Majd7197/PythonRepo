@@ -21,7 +21,7 @@
             </div>
             <ul class="nav navbar-nav">
                 <li><a href="#">Home</a></li>
-                <li><a href="#">Users</a></li>
+                <li><a href="/users">Users</a></li>
                 <li><a href="/classes">Classes</a></li>
                 <li class="active"><a href="/subscriptions">Subscriptions</a></li>
             </ul>
@@ -45,28 +45,30 @@
                     <th>Status</th>
                 </tr>
                 {% for user in users %}
-
-                {% if user.subscriptions.all %}
-                    {% for subscription in user.subscriptions.all %}
-                        <tr>
-                            <td>{{ user.first_name }} {{ user.last_name }}</td>
-                            <td>{{ subscription.start_date }}</td>
-                            <td>{{ subscription.end_date }}</td>
-                            <td><a href="">edit</a> | <a href="">review</a></td>
-                            <td> {% if time > subscription.end_date %} Expired Subscription {% else %} valid {% endif %} </td>
-                        </tr>
+                    {% for role in user.roles.all %}
+                        {% if role.title == 'member' %}
+                            {% if user.subscriptions.all %}
+                                {% for subscription in user.subscriptions.all %}
+                                    <tr>
+                                        <td>{{ user.first_name }} {{ user.last_name }}</td>
+                                        <td>{{ subscription.start_date }}</td>
+                                        <td>{{ subscription.end_date }}</td>
+                                        <td><a href="#">edit</a> | <a href="#">review</a></td>
+                                        <td>{% if time > subscription.end_date %}Expired Subscription{% else %}Valid{% endif %}</td>
+                                    </tr>
+                                {% endfor %}
+                            {% else %}
+                                <tr>
+                                    <td>{{ user.first_name }} {{ user.last_name }}</td>
+                                    <td>-</td>
+                                    <td>-</td>
+                                    <td>-</td>
+                                    <td>No subscription found | <a href="/add_subscription/{{ user.id }}">Add Subscription</a></td>
+                                </tr>
+                            {% endif %}
+                        {% endif %}
                     {% endfor %}
-                {% else %}
-                    <tr>
-                        <td >{{ user.first_name }} {{ user.last_name }}</td>
-                        <td >-</td>
-                        <td >-</td>
-                        <td >-</td>
-                        <td >No subscription found | <a href="/add_subscription/{{user.id}}">Add Subscription</a></td>
-                    </tr>
-                {% endif %}
-
-            {% endfor %}
+                {% endfor %}
             </table>
         </div>
     </div>
