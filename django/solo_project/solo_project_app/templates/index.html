@@ -90,7 +90,11 @@
             <ul class="nav navbar-nav">
                 <li><a href="#">Home</a></li>
                 <li class="active"><a href="/users">Users</a></li>
+<<<<<<< HEAD
                 <li><a href="/classes">Classes</a></li>
+=======
+                <li><a href="#">Classes</a></li>
+>>>>>>> a491f750c55dc73f21525cc08d514e82abec15ab
                 <li><a href="/subscriptions">Subscriptions</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
@@ -101,6 +105,7 @@
         </div>
     </nav>
 
+<<<<<<< HEAD
     <div class="container">
         {% if messages %}
         <div class="alert alert-danger">
@@ -109,6 +114,13 @@
             {% endfor %}
         </div>
         {% endif %}
+=======
+    <div id="main_container">
+        <div class="left_container">
+            <h2>Add a User</h2>
+            <form action="/users" method="post">
+                {% csrf_token %}
+>>>>>>> a491f750c55dc73f21525cc08d514e82abec15ab
 
         <h2>Add a User</h2>
         <form method="post" action="/users" enctype="multipart/form-data">
@@ -119,6 +131,7 @@
                 <input type="text" name="first_name" class="form-control" id="first_name" placeholder="First Name" required>
             </div>
 
+<<<<<<< HEAD
             <div class="form-group">
                 <label for="last_name">Last Name<span class="req"> *</span></label>
                 <input type="text" name="last_name" class="form-control" id="last_name" placeholder="Last Name" required>
@@ -175,6 +188,30 @@
 
             <button type="submit" class="btn btn-primary">Add User</button>
         </form>
+=======
+        <div class="right_container">
+            <h2>List of Members</h2>
+            <table class="table table-light table-hover table-bordered table-striped">
+                <tr>
+                    <th>Name</th>
+                    <th>Date of Birth</th>
+                    <th>Phone Number</th>
+                    <th>Action</th>
+                    <th>Role</th>
+                </tr>
+                {% for user in users %}
+                <tr>
+                    <td>{{ user.first_name }} {{user.last_name}}</td>
+                    <td>{{ user.dateofbirth }}</td> <!-- Use the correct field name from your model -->
+                    <td>{{ user.phone_number }}</td>
+                    <td><a href="">edit</a> | <a href="">review</a></td> 
+                    <td>{% for role in user.roles.all %} {{role.title}} {% endfor %}</td>    
+                </tr>
+                {% endfor %}
+
+            </table>
+        </div>
+>>>>>>> a491f750c55dc73f21525cc08d514e82abec15ab
     </div>
 
     <script>

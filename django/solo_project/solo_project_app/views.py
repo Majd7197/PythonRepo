@@ -73,6 +73,10 @@ def index(request):
                 description='this is a trainer',
                 user=user
             )
+<<<<<<< HEAD
+=======
+
+>>>>>>> a491f750c55dc73f21525cc08d514e82abec15ab
         return redirect('/users')
 
     content = {
