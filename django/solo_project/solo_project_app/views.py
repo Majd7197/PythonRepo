@@ -24,6 +24,7 @@ def index(request):
         date_of_birth = request.POST.get('dateofbirth')
         phone_number = request.POST.get('phone_number')
         email = request.POST.get('email')
+        photo = request.FILES.get('photo')
         password = generate_random_password()
         # password = request.POST.get('password')
         # confirm_password = request.POST.get('confirm_password')
@@ -43,7 +44,8 @@ def index(request):
             dateofbirth=date_of_birth,
             phone_number=phone_number,
             email=email,
-            password=password
+            password=password,
+            photo = photo,
         )
         request.session['first_name'] = first_name
 
